@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './styles/globals.css';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: 'Psychologists services',
@@ -8,12 +9,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  header,
 }: Readonly<{
   children: React.ReactNode;
+  header: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className={styles.page}>
+          {header}
+          <main>{children}</main>
+        </div>
+      </body>
     </html>
   );
 }

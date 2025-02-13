@@ -1,0 +1,19 @@
+.link {
+    position: relative;
+
+    &:hover {
+        color: var(--hover-btn);
+    }
+}
+
+.current-page::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -8px;
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin-left: 50%;
+}

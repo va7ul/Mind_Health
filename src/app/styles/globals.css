@@ -4,14 +4,13 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-}
-
-body {
-  color: var(--text-main);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-main, black);
+  background: var(--background, white);
+  letter-spacing: 0;
+  font-family: Inter, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 * {
@@ -23,4 +22,73 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+
+  transition: var(--transition);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul,
+ol,
+li {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: transparent;
+  cursor: pointer;
+
+  transition: var(--transition);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.btn-primary {
+  background-color: transparent;
+  border: solid 1px rgba(25, 26, 21, 0.2);
+
+  &:hover {
+    color: var(--text-btn);
+    background-color: var(--hover-btn);
+    border: solid 1px var(--hover-btn);
+  }
+}
+
+.btn-secondary {
+  color: var(--text-btn);
+  background-color: var(--primary);
+  border: solid 1px var(--primary);
+
+  &:hover {
+    background-color: var(--hover-btn);
+  }
 }
