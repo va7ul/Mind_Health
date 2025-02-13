@@ -1,0 +1,9 @@
+:root {
+    --background: rgb(251, 251, 251);
+    --text-main: rgb(25, 26, 21);
+    --text-secondary: rgba(25, 26, 21, 0.3);
+    --foreground: rgb(25, 26, 21);
+    --primary: rgb(52, 112, 255);
+    --secondary: rgba(52, 112, 255, 0.2);
+    --star: rgb(255, 197, 49);
+}
