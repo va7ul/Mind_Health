@@ -1,13 +1,21 @@
 'use client';
 
 import clsx from 'clsx';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import styles from './Header.module.css';
 import { NavLink } from './NavLink';
+import { signUp, signIn, logOut } from '@/app/(server)/api';
+import { useState } from 'react';
 
 export const Header = () => {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const email = 'test@ukr.net';
+  const password = '123456';
+
+  const [user, setUser] = useState({});
 
   return (
     <header className={styles.header}>
@@ -29,8 +37,16 @@ export const Header = () => {
       </ul>
       {true ? (
         <div className={styles.auth}>
-          <button className={clsx(styles.button, 'btn-primary')}>Log In</button>
-          <button className={clsx(styles.button, 'btn-secondary')}>
+          <button
+            className={clsx(styles.button, 'btn-primary')}
+            onClick={() => router.push('/sign-in')}
+          >
+            Log In
+          </button>
+          <button
+            className={clsx(styles.button, 'btn-secondary')}
+            onClick={() => signUp(email, password)}
+          >
             Registration
           </button>
         </div>
@@ -45,7 +61,10 @@ export const Header = () => {
             />
             <span>Ilona</span>
           </div>
-          <button className={clsx(styles.button, 'btn-primary')}>
+          <button
+            className={clsx(styles.button, 'btn-primary')}
+            onClick={logOut}
+          >
             Log Out
           </button>
         </div>

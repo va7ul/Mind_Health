@@ -101,7 +101,7 @@
 }
 
 .block>p>span {
-    color: var(--text-btn);
+    color: var(--background);
     font-size: 24px;
     font-weight: 700;
     line-height: 1.21;
@@ -111,7 +111,7 @@
     width: 54px;
     height: 54px;
     border-radius: 10px;
-    background-color: var(--text-btn);
+    background-color: var(--background);
     display: flex;
     align-items: center;
     justify-content: center;

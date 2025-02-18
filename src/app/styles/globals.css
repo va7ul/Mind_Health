@@ -3,14 +3,15 @@
 html,
 body {
   max-width: 100vw;
+  height: 100vh;
   overflow-x: hidden;
+  scroll-behavior: smooth;
   color: var(--text-main, black);
   background: var(--background, white);
   letter-spacing: 0;
   font-family: Inter, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 * {
@@ -77,14 +78,14 @@ input[type='number'] {
   border: solid 1px rgba(25, 26, 21, 0.2);
 
   &:hover {
-    color: var(--text-btn);
+    color: var(--background);
     background-color: var(--hover-btn);
     border: solid 1px var(--hover-btn);
   }
 }
 
 .btn-secondary {
-  color: var(--text-btn);
+  color: var(--background);
   background-color: var(--primary);
   border: solid 1px var(--primary);
 
