@@ -5,22 +5,59 @@
     row-gap: 40px;
 }
 
-.text-container {
+.container {
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
 }
 
-.text-container>h3 {
+.container>h3 {
     font-size: 40px;
     font-weight: 500;
     line-height: 1.2;
 }
 
-.text-container>p {
+.container>p {
+    margin-top: 20px;
     font-weight: 400;
     line-height: 1.25;
     color: rgba(25, 26, 21, 0.5);
+}
+
+.container>span {
+    color: crimson;
+    margin-top: 5px;
+}
+
+.container>input {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.25;
+    padding: 16px 18px;
+    border: 1px solid rgba(25, 26, 21, 0.1);
+    border-radius: 12px;
+
+    &::placeholder {
+        color: var(--text-main);
+    }
+
+    &:focus-visible {
+        outline-color: var(--primary);
+    }
+}
+
+.password {
+    position: relative;
+    margin-top: 20px;
+}
+
+.password>img {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .button {
