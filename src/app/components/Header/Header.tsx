@@ -5,8 +5,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import styles from './Header.module.css';
 import { NavLink } from './NavLink';
-import { signUp, signIn, logOut } from '@/app/(server)/api';
-import { useState } from 'react';
+import { signUp, logOut } from '@/app/(server)/api';
+// import { useState } from 'react';
 
 export const Header = () => {
   const pathname = usePathname();
@@ -15,7 +15,7 @@ export const Header = () => {
   const email = 'test@ukr.net';
   const password = '123456';
 
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
 
   return (
     <header className={styles.header}>
