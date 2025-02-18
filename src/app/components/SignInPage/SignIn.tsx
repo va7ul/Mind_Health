@@ -2,12 +2,12 @@
 
 import clsx from 'clsx';
 import styles from './SignIn.module.css';
-import { signIn } from '@/app/(server)/api';
+// import { signIn } from '@/app/(server)/api';
 import { useRouter } from 'next/navigation';
 
 export const SignIn = () => {
-  const email = 'test@ukr.net';
-  const password = '123456';
+  // const email = 'test@ukr.net';
+  // const password = '123456';
   const router = useRouter();
 
   return (
