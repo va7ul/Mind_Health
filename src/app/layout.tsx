@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './styles/globals.css';
 import styles from './page.module.css';
+import { AuthProvider } from './(server)/AuthProvider';
 
 export const metadata: Metadata = {
   title: 'Psychologists services',
@@ -20,9 +21,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className={styles.page}>
-          {header}
+          <AuthProvider>
+            {header}
+            {modal}
+          </AuthProvider>
           <main>{children}</main>
-          {modal}
         </div>
       </body>
     </html>

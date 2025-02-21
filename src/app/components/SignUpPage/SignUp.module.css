@@ -46,6 +46,10 @@
     }
 }
 
+.email {
+    margin-top: 20px;
+}
+
 .password {
     position: relative;
     margin-top: 20px;

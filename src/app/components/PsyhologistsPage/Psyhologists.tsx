@@ -1,12 +1,15 @@
 'use client';
 
-// import { getAllPsyhologists, getPsyhologists } from '../../(server)/api';
+import { getPsyhologists } from '../../(server)/api';
 // import { useEffect, useState } from 'react';
 
 export const Psyhologists = () => {
   // const [psyhologists, setPsyhologists] = useState([]);
 
-  // const psyhologists = getPsyhologists();
+  getPsyhologists();
+  // if (data?.displayName) {
+  //   setPsyhologists(data);
+  // }
   // console.log(psyhologists);
 
   return (

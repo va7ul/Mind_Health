@@ -6,19 +6,20 @@ import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
-import styles from './SignIn.module.css';
-import { schema } from '@/lib/schemes/login';
+import styles from './SignUp.module.css';
+import { schema } from '@/lib/schemes/register';
 import { useAuth } from '../../(server)/AuthProvider';
 
 type Inputs = {
+  name: string;
   email: string;
   password: string;
 };
 
-export const SignIn = () => {
+export const SignUp = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const { signIn } = useAuth();
+  const { signUp } = useAuth();
 
   const {
     register,
@@ -26,6 +27,7 @@ export const SignIn = () => {
     formState: { errors },
   } = useForm<Inputs>({
     defaultValues: {
+      name: 'test',
       email: 'test@ukr.net',
       password: '123456',
     },
@@ -36,22 +38,27 @@ export const SignIn = () => {
     setShowPassword(!showPassword);
   };
 
-  const onSubmit: SubmitHandler<Inputs> = ({ email, password }) => {
-    signIn(email, password);
+  const onSubmit: SubmitHandler<Inputs> = ({ name, email, password }) => {
+    signUp(name, email, password);
     router.back();
   };
 
   return (
     <form className={styles.wrapper} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.container}>
-        <h3>Log In</h3>
+        <h3>Registration</h3>
         <p>
-          Welcome back! Please enter your credentials to access your account and
-          continue your search for a psychologist.
+          Thank you for your interest in our platform! In order to register, we
+          need some information. Please provide us with the following
+          information.
         </p>
       </div>
       <div>
         <div className={styles.container}>
+          <input {...register('name')} placeholder="Name" />
+          <span>{errors.name?.message}</span>
+        </div>
+        <div className={clsx(styles.container, styles.email)}>
           <input {...register('email')} placeholder="Email" />
           <span>{errors.email?.message}</span>
         </div>
@@ -72,7 +79,7 @@ export const SignIn = () => {
         </div>
       </div>
       <button type="submit" className={clsx(styles.button, 'btn-secondary')}>
-        Log In
+        Sign Up
       </button>
     </form>
   );

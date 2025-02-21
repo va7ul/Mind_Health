@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import styles from './MainPage.module.css';
+import Link from 'next/link';
 
 export const MainPage = () => {
   return (
@@ -14,13 +15,15 @@ export const MainPage = () => {
           guide in your own life with the help of our experienced psychologists.
         </p>
         <button className={clsx(styles.button, 'btn-secondary')}>
-          Get started
-          <Image
-            src="/icons/arrow.svg"
-            alt="Arrow sign"
-            width={14}
-            height={14}
-          />
+          <Link href="/psychologists">
+            Get started
+            <Image
+              src="/icons/arrow.svg"
+              alt="Arrow sign"
+              width={14}
+              height={14}
+            />
+          </Link>
         </button>
       </div>
       <div className={styles.thumb}>
