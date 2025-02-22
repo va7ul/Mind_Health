@@ -8,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import styles from './SignIn.module.css';
 import { schema } from '@/lib/schemes/login';
-import { useAuth } from '../../(server)/AuthProvider';
+import { useAuth } from '../AuthProvider';
 
 type Inputs = {
   email: string;

@@ -15,7 +15,7 @@ import {
   signOut,
   User,
 } from 'firebase/auth';
-import { auth } from './firebase';
+import { auth } from '../(server)/firebase';
 
 type AuthContextType = {
   user: User | null;
@@ -86,8 +86,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await signOut(auth);
     setUser(null);
   };
-
-  if (loading) return null;
 
   return (
     <AuthContext.Provider value={{ user, loading, signUp, signIn, logOut }}>

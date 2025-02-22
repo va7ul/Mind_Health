@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import styles from './Header.module.css';
 import { NavLink } from './NavLink';
-import { useAuth } from '../../(server)/AuthProvider';
+import { useAuth } from '../AuthProvider';
 
 export const Header = () => {
   const pathname = usePathname();

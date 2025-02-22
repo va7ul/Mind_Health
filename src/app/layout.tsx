@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './styles/globals.css';
 import styles from './page.module.css';
-import { AuthProvider } from './(server)/AuthProvider';
+import { AuthProvider } from './components/AuthProvider';
 
 export const metadata: Metadata = {
   title: 'Psychologists services',
