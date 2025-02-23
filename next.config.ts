@@ -1,7 +1,18 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  output: 'standalone', // Виправляє маршрутизацію на деяких платформах
+  output: 'standalone',
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ftp.goit.study',
+        port: '',
+        pathname: '/img/avatars/**',
+        search: '',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

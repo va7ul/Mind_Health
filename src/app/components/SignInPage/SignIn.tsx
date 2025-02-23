@@ -52,11 +52,16 @@ export const SignIn = () => {
       </div>
       <div>
         <div className={styles.container}>
-          <input {...register('email')} placeholder="Email" />
+          <input
+            suppressHydrationWarning={true}
+            {...register('email')}
+            placeholder="Email"
+          />
           <span>{errors.email?.message}</span>
         </div>
         <div className={clsx(styles.container, styles.password)}>
           <input
+            suppressHydrationWarning={true}
             {...register('password')}
             placeholder="Password"
             type={showPassword ? 'text' : 'password'}
@@ -71,7 +76,11 @@ export const SignIn = () => {
           <span>{errors.password?.message}</span>
         </div>
       </div>
-      <button type="submit" className={clsx(styles.button, 'btn-secondary')}>
+      <button
+        suppressHydrationWarning={true}
+        type="submit"
+        className={clsx(styles.button, 'btn-secondary')}
+      >
         Log In
       </button>
     </form>

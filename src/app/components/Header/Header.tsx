@@ -53,12 +53,14 @@ export const Header = () => {
       ) : (
         <div className={styles.auth}>
           <button
+            suppressHydrationWarning={true}
             className={clsx(styles.button, 'btn-primary')}
             onClick={() => router.push('/sign-in')}
           >
             Log In
           </button>
           <button
+            suppressHydrationWarning={true}
             className={clsx(styles.button, 'btn-secondary')}
             onClick={() => router.push('/sign-up')}
           >

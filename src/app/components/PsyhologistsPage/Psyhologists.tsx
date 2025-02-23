@@ -1,22 +1,52 @@
 'use client';
 
-import { getPsyhologists } from '../../(server)/api';
-// import { useEffect, useState } from 'react';
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
+import { Psyhologist } from '@/app/psychologists/page';
+import { PsyhologistCard } from './PsyhologistCard';
+import styles from './Psyhologists.module.css';
 
-export const Psyhologists = () => {
-  // const [psyhologists, setPsyhologists] = useState([]);
+type PsyhologistsProps = {
+  initialData: Psyhologist[];
+};
 
-  getPsyhologists();
-  // if (data?.displayName) {
-  //   setPsyhologists(data);
-  // }
-  // console.log(psyhologists);
+export const Psyhologists = ({ initialData }: PsyhologistsProps) => {
+  const [psyhologists, setPsyhologists] = useState<Psyhologist[]>(initialData);
+  const [filter, setFilter] = useState('');
+
+  useEffect(() => {
+    setPsyhologists(initialData || []);
+    console.log(initialData[0].reviews);
+  }, [initialData]);
+
+  const filteredPsyhologists = psyhologists.filter(psyhologist =>
+    psyhologist.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
-    <>
-      {/* {psyhologists.map(psyhologist => (
-        <li key={psyhologist.name}>{psyhologist.name}</li>
-      ))} */}
-    </>
+    <div className={styles.container}>
+      <input
+        suppressHydrationWarning={true}
+        className={styles.filter}
+        type="text"
+        placeholder="Filter by name"
+        value={filter}
+        onChange={e => setFilter(e.target.value)}
+      />
+      <ul className={styles.list}>
+        {filteredPsyhologists?.map((psyhologist, index) => (
+          <li key={index} className={styles.card}>
+            <PsyhologistCard psyhologist={psyhologist} />
+          </li>
+        ))}
+      </ul>
+      <button
+        suppressHydrationWarning={true}
+        className={clsx(styles.button, 'btn-secondary')}
+        type="button"
+      >
+        Load more
+      </button>
+    </div>
   );
 };

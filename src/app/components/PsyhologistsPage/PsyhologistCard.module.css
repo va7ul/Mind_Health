@@ -1,0 +1,139 @@
+.image {
+    position: relative;
+    min-width: 120px;
+    height: 120px;
+    padding: 12px;
+    border-radius: 30px;
+    border: 2px solid var(--secondary);
+}
+
+.image>img:first-child {
+    border-radius: 15px;
+}
+
+.image>img:last-child {
+    position: absolute;
+    top: 9;
+    right: 14;
+}
+
+/* ========================================== */
+.wrapper {
+    width: 100%;
+}
+
+/* ===== */
+.main-info-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+
+    color: rgb(138, 138, 137);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.name>span {
+    color: var(--text-main);
+    font-size: 24px;
+    line-height: 1;
+}
+
+/* ====== */
+.stats {
+    display: flex;
+    align-items: center;
+    height: 26px;
+}
+
+.stats>span {
+    color: var(--text-secondary);
+}
+
+.rating {
+    margin-left: 4px;
+    margin-right: 16px;
+}
+
+.price {
+    margin-left: 16px;
+    margin-right: 28px;
+}
+
+.price>span {
+    color: rgb(56, 205, 62);
+}
+
+/* ===== */
+.params {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.params>div {
+    display: flex;
+    gap: 4px;
+}
+
+.block {
+    padding: 8px 16px;
+    border-radius: 24px;
+    background: var(--background);
+
+    color: rgb(138, 138, 137);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.block>span {
+    color: var(--text-main);
+}
+
+/* ===== */
+.desc {
+    margin-top: 24px;
+
+    color: rgba(25, 26, 21, 0.5);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+/* ===== */
+.button {
+    margin-top: 40px;
+    padding: 14px 32px;
+    border-radius: 30px;
+}
+
+/* ===== */
+.read-more {
+    margin-top: 14px;
+    background-color: transparent;
+    color: var(--text-main);
+    text-decoration-line: underline;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+
+    &:hover {
+        color: var(--hover-btn);
+    }
+}
+
+
+
+/* ========================================== */

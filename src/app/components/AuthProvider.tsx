@@ -15,7 +15,7 @@ import {
   signOut,
   User,
 } from 'firebase/auth';
-import { auth } from '../(server)/firebase';
+import { auth } from '../../lib/utils/firebase';
 
 type AuthContextType = {
   user: User | null;

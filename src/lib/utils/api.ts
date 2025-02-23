@@ -6,12 +6,13 @@ export const getPsyhologists = async () => {
   // Для одноразового отримання даних:
   const snapshot = await get(psychologistsRef);
 
-  if (snapshot.exists()) {
-    localStorage.setItem('psyhologists', JSON.stringify(snapshot.val()));
-  } else {
+  if (!snapshot.exists()) {
     console.log('Дані не знайдено!');
     return [];
   }
+
+  const psychologists = snapshot.val();
+  return psychologists;
 };
 
 // Для постійного відстеження змін:

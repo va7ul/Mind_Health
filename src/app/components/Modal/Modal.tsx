@@ -25,12 +25,21 @@ export const Modal = ({ children }: { children: React.ReactNode }) => {
   }, [router]);
 
   return (
-    <div className={styles['modal-backdrop']} onClick={() => router.back()}>
+    <div
+      suppressHydrationWarning={true}
+      className={styles['modal-backdrop']}
+      onClick={() => router.back()}
+    >
       <div
+        suppressHydrationWarning={true}
         className={styles['modal-content']}
         onClick={e => e.stopPropagation()}
       >
-        <button className={styles['btn-close']} onClick={() => router.back()}>
+        <button
+          suppressHydrationWarning={true}
+          className={styles['btn-close']}
+          onClick={() => router.back()}
+        >
           <Image src="/icons/x.svg" alt="Close icon" width={32} height={32} />
         </button>
         {children}

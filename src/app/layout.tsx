@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import './styles/globals.css';
 import styles from './page.module.css';
 import { AuthProvider } from './components/AuthProvider';
@@ -7,6 +8,8 @@ export const metadata: Metadata = {
   title: 'Psychologists services',
   description: 'A website to find psychological services',
 };
+
+const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,
@@ -18,7 +21,7 @@ export default function RootLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.className}>
       <body>
         <div className={styles.page}>
           <AuthProvider>

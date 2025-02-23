@@ -36,6 +36,7 @@
     padding: 16px 18px;
     border: 1px solid rgba(25, 26, 21, 0.1);
     border-radius: 12px;
+    background-color: var(--background-content);
 
     &::placeholder {
         color: var(--text-main);

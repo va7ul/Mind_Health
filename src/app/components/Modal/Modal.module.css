@@ -15,7 +15,7 @@
     max-height: 80vh;
     overflow-y: auto;
     position: relative;
-    background: white;
+    background: var(--background-content);
     padding: 20px;
     border-radius: 30px;
     min-width: 300px;
