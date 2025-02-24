@@ -13,6 +13,7 @@ export type Psyhologist = {
   rating: number;
   price_per_hour: number;
   experience: string;
+  id: string;
   license: string;
   specialization: string;
   initial_consultation: string;

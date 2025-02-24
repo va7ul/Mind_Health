@@ -1,9 +1,13 @@
+'use client';
+
 import clsx from 'clsx';
 import { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import styles from './PsyhologistCard.module.css';
 import { Psyhologist } from '@/app/psychologists/page';
 import { PsyhologistReviews } from './PsyhologistReviews';
+import { useAuth } from '../AuthProvider';
 
 type PsyhologistCardProps = {
   psyhologist: Psyhologist;
@@ -23,11 +27,17 @@ export const PsyhologistCard = ({ psyhologist }: PsyhologistCardProps) => {
     reviews,
   } = psyhologist;
 
+  const { user } = useAuth();
+  const router = useRouter();
   const [isfavorite, setIsFavorite] = useState(false);
   const [showAll, setShowAll] = useState(false);
 
   const toggleFavorite = () => {
-    setIsFavorite(!isfavorite);
+    if (user) {
+      setIsFavorite(!isfavorite);
+    } else {
+      router.push('/sign-in');
+    }
   };
 
   const onShowMore = () => {
@@ -70,9 +80,11 @@ export const PsyhologistCard = ({ psyhologist }: PsyhologistCardProps) => {
             </div>
             <Image
               src={
-                isfavorite ? '/icons/full-heart.svg' : '/icons/empty-heart.svg'
+                user && isfavorite
+                  ? '/icons/full-heart.svg'
+                  : '/icons/empty-heart.svg'
               }
-              alt={isfavorite ? 'Full heart icon' : 'Empty heart icon'}
+              alt={user && isfavorite ? 'Full heart icon' : 'Empty heart icon'}
               width={26}
               height={26}
               onClick={toggleFavorite}

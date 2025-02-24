@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import { Select, MenuItem } from '@mui/material';
+import { Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Psyhologist } from '@/app/psychologists/page';
 import { PsyhologistCard } from './PsyhologistCard';
@@ -14,6 +14,7 @@ type PsyhologistsProps = {
 
 export const Psyhologists = ({ initialData }: PsyhologistsProps) => {
   const [psyhologists, setPsyhologists] = useState<Psyhologist[]>(initialData);
+  const [visibleCount, setVisibleCount] = useState(3);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
@@ -22,13 +23,19 @@ export const Psyhologists = ({ initialData }: PsyhologistsProps) => {
 
   const filteredPsyhologists = getFilteredPsyhologist(psyhologists, filter);
 
+  const handleFilter = (e: SelectChangeEvent) => {
+    setFilter(e.target.value);
+    setVisibleCount(3);
+  };
+  const handleLoadMore = () => setVisibleCount(visibleCount + 3);
+
   return (
     <div className={styles.container}>
       <div className={styles.filter}>
         <p>Filters</p>
         <Select
           value={filter}
-          onChange={e => setFilter(e.target.value)}
+          onChange={handleFilter}
           displayEmpty
           className={styles.customSelect}
           MenuProps={{
@@ -50,19 +57,22 @@ export const Psyhologists = ({ initialData }: PsyhologistsProps) => {
         </Select>
       </div>
       <ul className={styles.list}>
-        {filteredPsyhologists?.map((psyhologist, index) => (
-          <li key={index} className={styles.card}>
+        {filteredPsyhologists?.slice(0, visibleCount).map(psyhologist => (
+          <li key={psyhologist.id} className={styles.card}>
             <PsyhologistCard psyhologist={psyhologist} />
           </li>
         ))}
       </ul>
-      <button
-        suppressHydrationWarning={true}
-        className={clsx(styles.button, 'btn-secondary')}
-        type="button"
-      >
-        Load more
-      </button>
+      {visibleCount < psyhologists.length && (
+        <button
+          suppressHydrationWarning={true}
+          className={clsx(styles.button, 'btn-secondary')}
+          type="button"
+          onClick={handleLoadMore}
+        >
+          Load more
+        </button>
+      )}
     </div>
   );
 };
