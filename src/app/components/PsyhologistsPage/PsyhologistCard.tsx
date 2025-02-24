@@ -24,7 +24,7 @@ export const PsyhologistCard = ({ psyhologist }: PsyhologistCardProps) => {
   } = psyhologist;
 
   const [isfavorite, setIsFavorite] = useState(false);
-  const [showAll, setShowAll] = useState(true);
+  const [showAll, setShowAll] = useState(false);
 
   const toggleFavorite = () => {
     setIsFavorite(!isfavorite);

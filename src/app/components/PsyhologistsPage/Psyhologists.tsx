@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Psyhologist } from '@/app/psychologists/page';
 import { PsyhologistCard } from './PsyhologistCard';
 import styles from './Psyhologists.module.css';
+import { getFilteredPsyhologist } from '@/lib/utils/getFilteredPsyhologists';
 
 type PsyhologistsProps = {
   initialData: Psyhologist[];
@@ -19,11 +20,7 @@ export const Psyhologists = ({ initialData }: PsyhologistsProps) => {
     setPsyhologists(initialData || []);
   }, [initialData]);
 
-
-  
-  const filteredPsyhologists = psyhologists.filter(psyhologist =>
-    psyhologist.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const filteredPsyhologists = getFilteredPsyhologist(psyhologists, filter);
 
   return (
     <div className={styles.container}>
@@ -45,10 +42,10 @@ export const Psyhologists = ({ initialData }: PsyhologistsProps) => {
         >
           <MenuItem value="A to Z">A to Z</MenuItem>
           <MenuItem value="Z to A">Z to A</MenuItem>
-          <MenuItem value="Less than 10$">Less than 10$</MenuItem>
-          <MenuItem value="Greater than 10$">Greater than 10$</MenuItem>
-          <MenuItem value="Popular">Popular</MenuItem>
-          <MenuItem value="Not popular">Not popular</MenuItem>
+          <MenuItem value="Less than 10$">Less than 10$ ↑</MenuItem>
+          <MenuItem value="Greater than 10$">Greater than 10$ ↓</MenuItem>
+          <MenuItem value="Popular">Popular ↓</MenuItem>
+          <MenuItem value="Not popular">Not popular ↑</MenuItem>
           <MenuItem value="">Show all</MenuItem>
         </Select>
       </div>

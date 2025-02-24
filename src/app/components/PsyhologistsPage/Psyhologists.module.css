@@ -15,6 +15,7 @@
 }
 
 .customSelect {
+    width: 226px;
     background-color: var(--primary);
     color: var(--background-content) !important;
     border-radius: 14px !important;
