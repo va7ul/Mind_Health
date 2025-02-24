@@ -6,6 +6,47 @@
     margin-bottom: 32px;
 }
 
+.filter>p {
+    margin-bottom: 8px;
+    color: rgb(138, 138, 137);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.customSelect {
+    background-color: var(--primary);
+    color: var(--background-content) !important;
+    border-radius: 14px !important;
+    padding: 16px 18px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+    transition: var(--transition);
+
+    &:hover {
+        background-color: var(--hover-btn);
+    }
+}
+
+.customSelect>div {
+    padding: 0;
+}
+
+.menuPaper {
+    margin-top: 8px;
+    border-radius: 14px !important;
+    color: var(--text-secondary) !important;
+}
+
+.menuPaper>ul {
+    padding: 0;
+}
+
+.menuPaper>ul>li[aria-selected="true"] {
+    color: var(--text-main) !important;
+}
+
 .list {
     display: flex;
     flex-direction: column;

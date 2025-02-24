@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import { Select, MenuItem } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Psyhologist } from '@/app/psychologists/page';
 import { PsyhologistCard } from './PsyhologistCard';
@@ -16,23 +17,41 @@ export const Psyhologists = ({ initialData }: PsyhologistsProps) => {
 
   useEffect(() => {
     setPsyhologists(initialData || []);
-    console.log(initialData[0].reviews);
   }, [initialData]);
 
+
+  
   const filteredPsyhologists = psyhologists.filter(psyhologist =>
     psyhologist.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (
     <div className={styles.container}>
-      <input
-        suppressHydrationWarning={true}
-        className={styles.filter}
-        type="text"
-        placeholder="Filter by name"
-        value={filter}
-        onChange={e => setFilter(e.target.value)}
-      />
+      <div className={styles.filter}>
+        <p>Filters</p>
+        <Select
+          value={filter}
+          onChange={e => setFilter(e.target.value)}
+          displayEmpty
+          className={styles.customSelect}
+          MenuProps={{
+            classes: { paper: styles.menuPaper },
+          }}
+          sx={{
+            '& .MuiSelect-icon': {
+              color: 'rgb(251, 251, 251)',
+            },
+          }}
+        >
+          <MenuItem value="A to Z">A to Z</MenuItem>
+          <MenuItem value="Z to A">Z to A</MenuItem>
+          <MenuItem value="Less than 10$">Less than 10$</MenuItem>
+          <MenuItem value="Greater than 10$">Greater than 10$</MenuItem>
+          <MenuItem value="Popular">Popular</MenuItem>
+          <MenuItem value="Not popular">Not popular</MenuItem>
+          <MenuItem value="">Show all</MenuItem>
+        </Select>
+      </div>
       <ul className={styles.list}>
         {filteredPsyhologists?.map((psyhologist, index) => (
           <li key={index} className={styles.card}>
