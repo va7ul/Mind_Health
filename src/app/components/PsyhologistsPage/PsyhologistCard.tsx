@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import styles from './PsyhologistCard.module.css';
@@ -19,6 +19,7 @@ export const PsyhologistCard = ({ psyhologist }: PsyhologistCardProps) => {
     avatar_url,
     rating,
     price_per_hour,
+    id,
     experience,
     license,
     specialization,
@@ -32,11 +33,33 @@ export const PsyhologistCard = ({ psyhologist }: PsyhologistCardProps) => {
   const [isfavorite, setIsFavorite] = useState(false);
   const [showAll, setShowAll] = useState(false);
 
+  useEffect(() => {
+    const favoriteList = JSON.parse(localStorage.getItem('favorite') || '[]');
+    if (favoriteList.includes(id)) {
+      setIsFavorite(true);
+    }
+  }, [id]);
+
   const toggleFavorite = () => {
-    if (user) {
-      setIsFavorite(!isfavorite);
-    } else {
+    if (!user) {
       router.push('/sign-in');
+      return;
+    }
+
+    const favoriteList: string[] = JSON.parse(
+      localStorage.getItem('favorite') || '[]'
+    );
+
+    if (!favoriteList.includes(id)) {
+      favoriteList.push(id);
+      localStorage.setItem('favorite', JSON.stringify(favoriteList));
+      setIsFavorite(true);
+    } else {
+      localStorage.setItem(
+        'favorite',
+        JSON.stringify(favoriteList.filter(item => item !== id))
+      );
+      setIsFavorite(false);
     }
   };
 
