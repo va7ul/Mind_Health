@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Review } from '@/app/psychologists/page';
+import { Review } from '@/types/psyhologists.types';
 import styles from './PsyhologistReviews.module.css';
 
 type PsyhologistReviewsProps = {

@@ -5,7 +5,7 @@ import { Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Psyhologist } from '@/types/psyhologists.types';
 import { PsyhologistCard } from '../Shared/PsyhologistCard';
-import styles from './Psyhologists.module.css';
+import styles from './Favorites.module.css';
 import { getFilteredPsyhologist } from '@/lib/utils/getFilteredPsyhologists';
 
 type PsyhologistsProps = {
@@ -13,19 +13,15 @@ type PsyhologistsProps = {
 };
 
 export const Psyhologists = ({ initialData }: PsyhologistsProps) => {
+  console.log(initialData);
+
   const [psyhologists, setPsyhologists] = useState<Psyhologist[]>(initialData);
-  const [favorites, setFavorites] = useState<string[]>([]);
   const [visibleCount, setVisibleCount] = useState(3);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
     setPsyhologists(initialData || []);
   }, [initialData]);
-
-  useEffect(() => {
-    const favoritesList = JSON.parse(localStorage.getItem('favorites') || '[]');
-    setFavorites(favoritesList);
-  }, []);
 
   const filteredPsyhologists = getFilteredPsyhologist(psyhologists, filter);
 
@@ -65,11 +61,7 @@ export const Psyhologists = ({ initialData }: PsyhologistsProps) => {
       <ul className={styles.list}>
         {filteredPsyhologists?.slice(0, visibleCount).map(psyhologist => (
           <li key={psyhologist.id} className={styles.card}>
-            <PsyhologistCard
-              psyhologist={psyhologist}
-              favorites={favorites}
-              setFavorites={setFavorites}
-            />
+            <PsyhologistCard psyhologist={psyhologist} />
           </li>
         ))}
       </ul>

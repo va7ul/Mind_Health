@@ -5,15 +5,21 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import styles from './PsyhologistCard.module.css';
-import { Psyhologist } from '@/app/psychologists/page';
+import { Psyhologist } from '@/types/psyhologists.types';
 import { PsyhologistReviews } from './PsyhologistReviews';
 import { useAuth } from '../AuthProvider';
 
 type PsyhologistCardProps = {
   psyhologist: Psyhologist;
+  favorites: string[];
+  setFavorites: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-export const PsyhologistCard = ({ psyhologist }: PsyhologistCardProps) => {
+export const PsyhologistCard = ({
+  psyhologist,
+  favorites,
+  setFavorites,
+}: PsyhologistCardProps) => {
   const {
     name,
     avatar_url,
@@ -34,11 +40,10 @@ export const PsyhologistCard = ({ psyhologist }: PsyhologistCardProps) => {
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    const favoriteList = JSON.parse(localStorage.getItem('favorite') || '[]');
-    if (favoriteList.includes(id)) {
+    if (favorites.includes(id)) {
       setIsFavorite(true);
     }
-  }, [id]);
+  }, [favorites, id]);
 
   const toggleFavorite = () => {
     if (!user) {
@@ -46,19 +51,17 @@ export const PsyhologistCard = ({ psyhologist }: PsyhologistCardProps) => {
       return;
     }
 
-    const favoriteList: string[] = JSON.parse(
-      localStorage.getItem('favorite') || '[]'
-    );
+    let favoritesList = [...favorites];
 
-    if (!favoriteList.includes(id)) {
-      favoriteList.push(id);
-      localStorage.setItem('favorite', JSON.stringify(favoriteList));
+    if (!favoritesList.includes(id)) {
+      favoritesList.push(id);
+      localStorage.setItem('favorites', JSON.stringify(favoritesList));
+      setFavorites(favoritesList);
       setIsFavorite(true);
     } else {
-      localStorage.setItem(
-        'favorite',
-        JSON.stringify(favoriteList.filter(item => item !== id))
-      );
+      favoritesList = [...favoritesList].filter(item => item !== id);
+      localStorage.setItem('favorites', JSON.stringify(favoritesList));
+      setFavorites(favoritesList);
       setIsFavorite(false);
     }
   };
