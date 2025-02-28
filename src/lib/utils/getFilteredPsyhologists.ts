@@ -1,4 +1,4 @@
-import { Psyhologist } from '@/app/psychologists/page';
+import { Psyhologist } from '@/types/psyhologists.types';
 
 const params: Record<string, (a: Psyhologist, b: Psyhologist) => number> = {
   'A to Z': (a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
