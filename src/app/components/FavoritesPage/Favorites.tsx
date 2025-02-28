@@ -10,11 +10,15 @@ import { getFilteredPsyhologist } from '@/lib/utils/getFilteredPsyhologists';
 
 type PsyhologistsProps = {
   initialData: Psyhologist[];
+  favorites: string[];
+  setFavorites: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-export const Psyhologists = ({ initialData }: PsyhologistsProps) => {
-  console.log(initialData);
-
+export const Favorites = ({
+  initialData,
+  favorites,
+  setFavorites,
+}: PsyhologistsProps) => {
   const [psyhologists, setPsyhologists] = useState<Psyhologist[]>(initialData);
   const [visibleCount, setVisibleCount] = useState(3);
   const [filter, setFilter] = useState('');
@@ -61,7 +65,11 @@ export const Psyhologists = ({ initialData }: PsyhologistsProps) => {
       <ul className={styles.list}>
         {filteredPsyhologists?.slice(0, visibleCount).map(psyhologist => (
           <li key={psyhologist.id} className={styles.card}>
-            <PsyhologistCard psyhologist={psyhologist} />
+            <PsyhologistCard
+              psyhologist={psyhologist}
+              favorites={favorites}
+              setFavorites={setFavorites}
+            />
           </li>
         ))}
       </ul>

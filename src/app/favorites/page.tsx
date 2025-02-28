@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Psyhologist } from '@/types/psyhologists.types';
 import { getPsyhologists } from '@/lib/utils/api';
-import { Psyhologists } from '../components/PsyhologistsPage/Psyhologists';
+import { Favorites } from '../components/FavoritesPage/Favorites';
 
 export default function Page() {
   const [psyhologists, setPsyhologists] = useState<Psyhologist[]>([]);
@@ -30,7 +30,13 @@ export default function Page() {
     }
   }, [favorites]);
 
-  return <Psyhologists initialData={psyhologists} />;
+  return (
+    <Favorites
+      initialData={psyhologists}
+      favorites={favorites}
+      setFavorites={setFavorites}
+    />
+  );
 }
 
 // export default function Page() {
