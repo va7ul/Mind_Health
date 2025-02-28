@@ -38,26 +38,3 @@ export default function Page() {
     />
   );
 }
-
-// export default function Page() {
-//   const [psyhologists, setPsyhologists] = useState<Psyhologist[]>([]);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const favoritesList = JSON.parse(
-//         localStorage.getItem('favorites') || '[]'
-//       );
-//       const psyhologists: Psyhologist[] = await getPsyhologists();
-
-//       const favoritePsyhologists = psyhologists.filter(psyhologist =>
-//         favoritesList.includes(psyhologist.id)
-//       );
-
-//       setPsyhologists(favoritePsyhologists);
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   return <Psyhologists initialData={psyhologists} />;
-// }
