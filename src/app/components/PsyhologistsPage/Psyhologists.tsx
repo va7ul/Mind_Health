@@ -14,7 +14,7 @@ type PsyhologistsProps = {
 
 export const Psyhologists = ({ initialData }: PsyhologistsProps) => {
   const [psyhologists, setPsyhologists] = useState<Psyhologist[]>(initialData);
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<string[]>(['']);
   const [visibleCount, setVisibleCount] = useState(3);
   const [filter, setFilter] = useState('');
 

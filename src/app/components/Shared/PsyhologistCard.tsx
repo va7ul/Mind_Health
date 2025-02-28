@@ -51,19 +51,17 @@ export const PsyhologistCard = ({
       return;
     }
 
-    let favoritesList = [...favorites];
+    let favoritesList = !favorites.includes(id)
+      ? [...favorites, id]
+      : favorites.filter(item => item !== id);
 
-    if (!favoritesList.includes(id)) {
-      favoritesList.push(id);
-      localStorage.setItem('favorites', JSON.stringify(favoritesList));
-      setFavorites(favoritesList);
-      setIsFavorite(true);
-    } else {
-      favoritesList = [...favoritesList].filter(item => item !== id);
-      localStorage.setItem('favorites', JSON.stringify(favoritesList));
-      setFavorites(favoritesList);
-      setIsFavorite(false);
+    if (favoritesList.length === 0) {
+      favoritesList = [''];
     }
+
+    localStorage.setItem('favorites', JSON.stringify(favoritesList));
+    setFavorites(favoritesList);
+    setIsFavorite(!isfavorite);
   };
 
   const onShowMore = () => {

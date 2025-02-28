@@ -7,7 +7,7 @@ import { Favorites } from '../components/FavoritesPage/Favorites';
 
 export default function Page() {
   const [psyhologists, setPsyhologists] = useState<Psyhologist[]>([]);
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<string[]>(['']);
 
   useEffect(() => {
     const favoritesList = JSON.parse(localStorage.getItem('favorites') || '[]');
