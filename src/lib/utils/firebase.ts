@@ -3,7 +3,7 @@ import { getAuth } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyC6g5Gf-hODSqo1q3bifT9EYd5H3lbhdoM',
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
   authDomain: 'mind-health-982ab.firebaseapp.com',
   databaseURL:
     'https://mind-health-982ab-default-rtdb.europe-west1.firebasedatabase.app',
