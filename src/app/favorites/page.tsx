@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Psychologist } from '@/types/psychologists.types';
 import { getPsychologists } from '@/lib/utils/api';
 import { Favorites } from '../components/FavoritesPage/Favorites';
+import { PrivateRoute } from '../components/PrivateRoute';
 
 export default function Page() {
   const [psychologists, setPsychologists] = useState<Psychologist[]>([]);
@@ -31,10 +32,12 @@ export default function Page() {
   }, [favorites]);
 
   return (
-    <Favorites
-      initialData={psychologists}
-      favorites={favorites}
-      setFavorites={setFavorites}
-    />
+    <PrivateRoute>
+      <Favorites
+        initialData={psychologists}
+        favorites={favorites}
+        setFavorites={setFavorites}
+      />
+    </PrivateRoute>
   );
 }

@@ -2,6 +2,7 @@
 
 import { AuthProvider } from '../components/AuthProvider';
 import dynamic from 'next/dynamic';
+import { RestrictedRoute } from '../components/RestrictedRoute';
 
 const Modal = dynamic(
   () => import('@/app/components/Modal/Modal').then(mod => mod.Modal),
@@ -20,9 +21,11 @@ const SignUp = dynamic(
 export default function Page() {
   return (
     <AuthProvider>
-      <Modal>
-        <SignUp />
-      </Modal>
+      <RestrictedRoute>
+        <Modal>
+          <SignUp />
+        </Modal>
+      </RestrictedRoute>
     </AuthProvider>
   );
 }
