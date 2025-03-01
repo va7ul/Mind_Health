@@ -1,11 +1,11 @@
-import { Psyhologist } from '@/types/psyhologists.types';
-import { getPsyhologists } from '../../lib/utils/api';
-import { Psyhologists } from '../components/PsyhologistsPage/Psyhologists';
+import { Psychologist } from '@/types/psychologists.types';
+import { getPsychologists } from '../../lib/utils/api';
+import { Psychologists } from '../components/PsychologistsPage/Psychologists';
 
 export const revalidate = 60;
 
 export default async function Page() {
-  const psyhologists: Psyhologist[] = await getPsyhologists();
+  const psyhologists: Psychologist[] = await getPsychologists();
 
-  return <Psyhologists initialData={psyhologists} />;
+  return <Psychologists initialData={psyhologists} />;
 }

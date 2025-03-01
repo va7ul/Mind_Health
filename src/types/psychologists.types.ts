@@ -4,7 +4,7 @@ export type Review = {
   reviewer: string;
 };
 
-export type Psyhologist = {
+export type Psychologist = {
   name: string;
   avatar_url: string;
   rating: number;

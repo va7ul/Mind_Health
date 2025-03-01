@@ -1,7 +1,7 @@
 import { ref, get } from 'firebase/database';
 import { database } from './firebase';
 
-export const getPsyhologists = async () => {
+export const getPsychologists = async () => {
   const psychologistsRef = ref(database, '/');
   const snapshot = await get(psychologistsRef);
 

@@ -4,22 +4,24 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import styles from './PsyhologistCard.module.css';
-import { Psyhologist } from '@/types/psyhologists.types';
-import { PsyhologistReviews } from './PsyhologistReviews';
+import styles from './PsychologistCard.module.css';
+import { Psychologist } from '@/types/psychologists.types';
+import { PsychologistReviews } from './PsychologistReviews';
 import { useAuth } from '../AuthProvider';
+import { Modal } from '../Modal/Modal';
+import { MakeAnAppointment } from '../MakeAnAppointmentPage/MakeAnAppointment';
 
-type PsyhologistCardProps = {
-  psyhologist: Psyhologist;
+type PsychologistCardProps = {
+  psychologist: Psychologist;
   favorites: string[];
   setFavorites: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-export const PsyhologistCard = ({
-  psyhologist,
+export const PsychologistCard = ({
+  psychologist,
   favorites,
   setFavorites,
-}: PsyhologistCardProps) => {
+}: PsychologistCardProps) => {
   const {
     name,
     avatar_url,
@@ -32,12 +34,13 @@ export const PsyhologistCard = ({
     initial_consultation,
     about,
     reviews,
-  } = psyhologist;
+  } = psychologist;
 
   const { user } = useAuth();
   const router = useRouter();
   const [isfavorite, setIsFavorite] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (favorites.includes(id)) {
@@ -68,12 +71,16 @@ export const PsyhologistCard = ({
     setShowAll(true);
   };
 
+  const toggleOpenModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <>
       <div className={styles.image}>
         <Image
           src={avatar_url}
-          alt="Photo of psyhologist"
+          alt="Photo of psychologist"
           width={96}
           height={96}
         />
@@ -136,11 +143,12 @@ export const PsyhologistCard = ({
         <p className={styles.desc}>{about}</p>
         {showAll ? (
           <>
-            <PsyhologistReviews reviews={reviews} />
+            <PsychologistReviews reviews={reviews} />
             <button
               suppressHydrationWarning={true}
               className={clsx(styles.button, 'btn-secondary')}
               type="button"
+              onClick={toggleOpenModal}
             >
               Make an appointment
             </button>
@@ -156,6 +164,14 @@ export const PsyhologistCard = ({
           </button>
         )}
       </div>
+      {isModalOpen && (
+        <Modal toggleOpenModal={toggleOpenModal}>
+          <MakeAnAppointment
+            toggleOpenModal={toggleOpenModal}
+            psychologist={psychologist}
+          />
+        </Modal>
+      )}
     </>
   );
 };

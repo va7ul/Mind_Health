@@ -3,13 +3,13 @@
 import clsx from 'clsx';
 import { Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Psyhologist } from '@/types/psyhologists.types';
-import { PsyhologistCard } from '../Shared/PsyhologistCard';
+import { Psychologist } from '@/types/psychologists.types';
+import { PsychologistCard } from '../Shared/PsychologistCard';
 import styles from './Favorites.module.css';
-import { getFilteredPsyhologist } from '@/lib/utils/getFilteredPsyhologists';
+import { getFilteredPsychologist } from '@/lib/utils/getFilteredPsychologists';
 
-type PsyhologistsProps = {
-  initialData: Psyhologist[];
+type PsychologistsProps = {
+  initialData: Psychologist[];
   favorites: string[];
   setFavorites: React.Dispatch<React.SetStateAction<string[]>>;
 };
@@ -18,16 +18,17 @@ export const Favorites = ({
   initialData,
   favorites,
   setFavorites,
-}: PsyhologistsProps) => {
-  const [psyhologists, setPsyhologists] = useState<Psyhologist[]>(initialData);
+}: PsychologistsProps) => {
+  const [psychologists, setPsychologists] =
+    useState<Psychologist[]>(initialData);
   const [visibleCount, setVisibleCount] = useState(3);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    setPsyhologists(initialData || []);
+    setPsychologists(initialData || []);
   }, [initialData]);
 
-  const filteredPsyhologists = getFilteredPsyhologist(psyhologists, filter);
+  const filteredPsychologists = getFilteredPsychologist(psychologists, filter);
 
   const handleFilter = (e: SelectChangeEvent) => {
     setFilter(e.target.value);
@@ -63,17 +64,17 @@ export const Favorites = ({
         </Select>
       </div>
       <ul className={styles.list}>
-        {filteredPsyhologists?.slice(0, visibleCount).map(psyhologist => (
-          <li key={psyhologist.id} className={styles.card}>
-            <PsyhologistCard
-              psyhologist={psyhologist}
+        {filteredPsychologists?.slice(0, visibleCount).map(psychologist => (
+          <li key={psychologist.id} className={styles.card}>
+            <PsychologistCard
+              psychologist={psychologist}
               favorites={favorites}
               setFavorites={setFavorites}
             />
           </li>
         ))}
       </ul>
-      {visibleCount < psyhologists.length && (
+      {visibleCount < psychologists.length && (
         <button
           suppressHydrationWarning={true}
           className={clsx(styles.button, 'btn-secondary')}

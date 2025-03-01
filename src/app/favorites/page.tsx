@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Psyhologist } from '@/types/psyhologists.types';
-import { getPsyhologists } from '@/lib/utils/api';
+import { Psychologist } from '@/types/psychologists.types';
+import { getPsychologists } from '@/lib/utils/api';
 import { Favorites } from '../components/FavoritesPage/Favorites';
 
 export default function Page() {
-  const [psyhologists, setPsyhologists] = useState<Psyhologist[]>([]);
+  const [psychologists, setPsychologists] = useState<Psychologist[]>([]);
   const [favorites, setFavorites] = useState<string[]>(['']);
 
   useEffect(() => {
@@ -16,13 +16,13 @@ export default function Page() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const psyhologists: Psyhologist[] = await getPsyhologists();
+      const psychologists: Psychologist[] = await getPsychologists();
 
-      const favoritePsyhologists = psyhologists.filter(({ id }) =>
+      const favoritePsychologists = psychologists.filter(({ id }) =>
         favorites.includes(id)
       );
 
-      setPsyhologists(favoritePsyhologists);
+      setPsychologists(favoritePsychologists);
     };
 
     if (favorites.length) {
@@ -32,7 +32,7 @@ export default function Page() {
 
   return (
     <Favorites
-      initialData={psyhologists}
+      initialData={psychologists}
       favorites={favorites}
       setFavorites={setFavorites}
     />

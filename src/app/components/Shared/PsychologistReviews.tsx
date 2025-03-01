@@ -1,12 +1,12 @@
 import Image from 'next/image';
-import { Review } from '@/types/psyhologists.types';
-import styles from './PsyhologistReviews.module.css';
+import { Review } from '@/types/psychologists.types';
+import styles from './PsychologistReviews.module.css';
 
-type PsyhologistReviewsProps = {
+type PsychologistReviewsProps = {
   reviews: Review[];
 };
 
-export const PsyhologistReviews = ({ reviews }: PsyhologistReviewsProps) => {
+export const PsychologistReviews = ({ reviews }: PsychologistReviewsProps) => {
   return (
     <ul className={styles.reviews}>
       {reviews.map(({ comment, rating, reviewer }, index) => (

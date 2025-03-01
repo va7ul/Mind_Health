@@ -1,17 +1,27 @@
 'use client';
 
+import { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import Image from 'next/image';
 import styles from './Modal.module.css';
 
-export const Modal = ({ children }: { children: React.ReactNode }) => {
+type ModalProps = {
+  children: React.ReactNode;
+  toggleOpenModal?: () => void;
+};
+
+export const Modal = ({ children, toggleOpenModal }: ModalProps) => {
   const router = useRouter();
+
+  const handleClose = useMemo(
+    () => toggleOpenModal || (() => router.back()),
+    [toggleOpenModal, router]
+  );
 
   useEffect(() => {
     const closeOnEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        router.back();
+        handleClose();
       }
     };
 
@@ -22,13 +32,13 @@ export const Modal = ({ children }: { children: React.ReactNode }) => {
       document.documentElement.style.overflow = '';
       document.removeEventListener('keydown', closeOnEscape);
     };
-  }, [router]);
+  }, [handleClose]);
 
   return (
     <div
       suppressHydrationWarning={true}
       className={styles['modal-backdrop']}
-      onClick={() => router.back()}
+      onClick={handleClose}
     >
       <div
         suppressHydrationWarning={true}
@@ -38,7 +48,7 @@ export const Modal = ({ children }: { children: React.ReactNode }) => {
         <button
           suppressHydrationWarning={true}
           className={styles['btn-close']}
-          onClick={() => router.back()}
+          onClick={handleClose}
         >
           <Image src="/icons/x.svg" alt="Close icon" width={32} height={32} />
         </button>
