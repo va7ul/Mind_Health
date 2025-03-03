@@ -1,7 +1,12 @@
 import clsx from 'clsx';
 import Image from 'next/image';
-import styles from './MainPage.module.css';
 import Link from 'next/link';
+import Arrow from '@icons/arrow.svg';
+import Question from '@icons/question.svg';
+import People from '@icons/people.svg';
+import Check from '@icons/check.svg';
+import Photo from '@images/main_image.jpeg';
+import styles from './MainPage.module.css';
 
 export const MainPage = () => {
   return (
@@ -17,46 +22,30 @@ export const MainPage = () => {
         <button className={clsx(styles.button, 'btn-secondary')}>
           <Link href="/psychologists">
             Get started
-            <Image
-              src="/icons/arrow.svg"
-              alt="Arrow sign"
-              width={14}
-              height={14}
-            />
+            <Image src={Arrow} alt="Arrow sign" />
           </Link>
         </button>
       </div>
       <div className={styles.thumb}>
         <div className={styles['question-container']}>
-          <Image
-            src="/icons/question.svg"
-            alt="Question sign"
-            width={10}
-            height={17}
-          />
+          <Image src={Question} alt="Question sign" />
         </div>
         <Image
-          src="/icons/people.svg"
+          src={People}
           alt="Question sign"
-          width={48}
-          height={48}
           className={styles['people-svg']}
         />
         <Image
-          src="/images/main_image.jpeg"
+          src={Photo}
           alt="Photo of phychologist"
           width={464}
           height={526}
           style={{ borderRadius: '10px' }}
+          placeholder="blur"
         />
         <div className={styles.block}>
           <div className={styles['check-container']}>
-            <Image
-              src="/icons/check.svg"
-              alt="Check sign"
-              width={30}
-              height={30}
-            />
+            <Image src={Check} alt="Check sign" />
           </div>
           <p>
             Experienced psychologists

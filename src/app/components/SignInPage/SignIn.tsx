@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
+import EyeOff from '@icons/eye-off.svg';
+import Eye from '@icons/eye.svg';
 import styles from './SignIn.module.css';
 import { schema } from '@/lib/schemes/login';
 import { useAuth } from '../AuthProvider';
@@ -67,10 +69,8 @@ export const SignIn = () => {
             type={showPassword ? 'text' : 'password'}
           />
           <Image
-            src={showPassword ? '/icons/eye-off.svg' : '/icons/eye.svg'}
+            src={showPassword ? EyeOff : Eye}
             alt={showPassword ? 'Open eye icon' : 'Close eye icon'}
-            width={20}
-            height={20}
             onClick={onShow}
           />
           <span>{errors.password?.message}</span>

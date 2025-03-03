@@ -2,8 +2,13 @@
 
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import GreenDot from '@icons/green-dot.svg';
+import Star from '@icons/star.svg';
+import FullHeart from '@icons/full-heart.svg';
+import EmptyHeart from '@icons/empty-heart.svg';
+
 import styles from './PsychologistCard.module.css';
 import { Psychologist } from '@/types/psychologists.types';
 import { PsychologistReviews } from './PsychologistReviews';
@@ -84,12 +89,7 @@ export const PsychologistCard = ({
           width={96}
           height={96}
         />
-        <Image
-          src="/icons/green-dot.svg"
-          alt="Green dot icon"
-          width={14}
-          height={14}
-        />
+        <Image src={GreenDot} alt="Green dot icon" />
       </div>
       <div className={styles.wrapper}>
         <div className={styles['main-info-wrapper']}>
@@ -98,26 +98,15 @@ export const PsychologistCard = ({
             <span>{name}</span>
           </div>
           <div className={styles.stats}>
-            <Image
-              src="/icons/star.svg"
-              alt="Star icon"
-              width={16}
-              height={16}
-            />
+            <Image src={Star} alt="Star icon" />
             <div className={styles.rating}>Rating: {rating}</div>
             <span>|</span>
             <div className={styles.price}>
               Price / 1 hour: <span>{price_per_hour}$</span>
             </div>
             <Image
-              src={
-                user && isfavorite
-                  ? '/icons/full-heart.svg'
-                  : '/icons/empty-heart.svg'
-              }
+              src={user && isfavorite ? FullHeart : EmptyHeart}
               alt={user && isfavorite ? 'Full heart icon' : 'Empty heart icon'}
-              width={26}
-              height={26}
               onClick={toggleFavorite}
             />
           </div>

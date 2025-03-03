@@ -3,6 +3,7 @@
 import clsx from 'clsx';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Profile from '@icons/profile.svg';
 import styles from './Header.module.css';
 import { NavLink } from './NavLink';
 import { useAuth } from '../AuthProvider';
@@ -35,12 +36,7 @@ export const Header = () => {
       {user ? (
         <div className={styles.box}>
           <div className={styles.profile}>
-            <Image
-              src="/icons/profile.svg"
-              alt="Profile icon"
-              width={40}
-              height={40}
-            />
+            <Image src={Profile} alt="Profile icon" />
             <span>{user.displayName}</span>
           </div>
           <button

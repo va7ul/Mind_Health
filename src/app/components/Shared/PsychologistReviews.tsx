@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Star from '@icons/star.svg';
 import { Review } from '@/types/psychologists.types';
 import styles from './PsychologistReviews.module.css';
 
@@ -16,12 +17,7 @@ export const PsychologistReviews = ({ reviews }: PsychologistReviewsProps) => {
             <div className={styles.reviewer}>
               {reviewer}
               <div className={styles.rating}>
-                <Image
-                  src="/icons/star.svg"
-                  alt="Star icon"
-                  width={16}
-                  height={16}
-                />
+                <Image src={Star} alt="Star icon" />
                 {rating}
               </div>
             </div>

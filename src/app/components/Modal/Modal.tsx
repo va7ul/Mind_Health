@@ -3,6 +3,7 @@
 import { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import X from '@icons/x.svg';
 import styles from './Modal.module.css';
 
 type ModalProps = {
@@ -50,7 +51,7 @@ export const Modal = ({ children, toggleOpenModal }: ModalProps) => {
           className={styles['btn-close']}
           onClick={handleClose}
         >
-          <Image src="/icons/x.svg" alt="Close icon" width={32} height={32} />
+          <Image src={X} alt="Close icon" />
         </button>
         {children}
       </div>
