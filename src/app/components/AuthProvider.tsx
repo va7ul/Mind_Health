@@ -89,10 +89,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       );
       setUser(userCredential.user);
     } catch (error) {
-      if (error.code === 'auth/invalid-credential') {
-        return Notify.failure('Invalid credentials');
-      }
-
       Notify.failure(`${error}`);
       console.error(error);
     } finally {
