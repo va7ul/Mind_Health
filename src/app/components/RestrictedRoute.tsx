@@ -14,7 +14,7 @@ export const RestrictedRoute = ({
 
   useEffect(() => {
     if (!loading && user) {
-      router.back();
+      router.push('/');
     }
   }, [loading, user, router]);
 

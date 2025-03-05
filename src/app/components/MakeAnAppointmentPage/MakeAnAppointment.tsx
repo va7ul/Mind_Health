@@ -3,6 +3,7 @@
 import clsx from 'clsx';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 import Image from 'next/image';
 import styles from './MakeAnAppointment.module.css';
 import { schema } from '@/lib/schemes//reservation';
@@ -47,7 +48,17 @@ export const MakeAnAppointment = ({
     email,
     comment,
   }) => {
-    console.log({ doctorName, patientName: name, phone, time, email, comment });
+    Report.success(
+      'Your order accepted',
+      `Doctor: ${doctorName}<br>
+      Patient: ${name}<br>
+      Phone: ${phone}<br>
+      Time: ${time}<br>
+      Email: ${email}<br>
+      Comment: ${comment}`,
+      'Okay',
+      { plainText: false }
+    );
     toggleOpenModal();
   };
 

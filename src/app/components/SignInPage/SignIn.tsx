@@ -11,6 +11,7 @@ import Eye from '@icons/eye.svg';
 import styles from './SignIn.module.css';
 import { schema } from '@/lib/schemes/login';
 import { useAuth } from '../AuthProvider';
+import { CustomLoader } from '../CustomLoader';
 
 type Inputs = {
   email: string;
@@ -20,7 +21,7 @@ type Inputs = {
 export const SignIn = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const { signIn } = useAuth();
+  const { signIn, loading } = useAuth();
 
   const {
     register,
@@ -44,45 +45,48 @@ export const SignIn = () => {
   };
 
   return (
-    <form className={styles.wrapper} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.container}>
-        <h3>Log In</h3>
-        <p>
-          Welcome back! Please enter your credentials to access your account and
-          continue your search for a psychologist.
-        </p>
-      </div>
-      <div>
+    <>
+      {loading && <CustomLoader />}
+      <form className={styles.wrapper} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.container}>
-          <input
-            suppressHydrationWarning={true}
-            {...register('email')}
-            placeholder="Email"
-          />
-          <span>{errors.email?.message}</span>
+          <h3>Log In</h3>
+          <p>
+            Welcome back! Please enter your credentials to access your account
+            and continue your search for a psychologist.
+          </p>
         </div>
-        <div className={clsx(styles.container, styles.password)}>
-          <input
-            suppressHydrationWarning={true}
-            {...register('password')}
-            placeholder="Password"
-            type={showPassword ? 'text' : 'password'}
-          />
-          <Image
-            src={showPassword ? EyeOff : Eye}
-            alt={showPassword ? 'Open eye icon' : 'Close eye icon'}
-            onClick={onShow}
-          />
-          <span>{errors.password?.message}</span>
+        <div>
+          <div className={styles.container}>
+            <input
+              suppressHydrationWarning={true}
+              {...register('email')}
+              placeholder="Email"
+            />
+            <span>{errors.email?.message}</span>
+          </div>
+          <div className={clsx(styles.container, styles.password)}>
+            <input
+              suppressHydrationWarning={true}
+              {...register('password')}
+              placeholder="Password"
+              type={showPassword ? 'text' : 'password'}
+            />
+            <Image
+              src={showPassword ? EyeOff : Eye}
+              alt={showPassword ? 'Open eye icon' : 'Close eye icon'}
+              onClick={onShow}
+            />
+            <span>{errors.password?.message}</span>
+          </div>
         </div>
-      </div>
-      <button
-        suppressHydrationWarning={true}
-        type="submit"
-        className={clsx(styles.button, 'btn-secondary')}
-      >
-        Log In
-      </button>
-    </form>
+        <button
+          suppressHydrationWarning={true}
+          type="submit"
+          className={clsx(styles.button, 'btn-secondary')}
+        >
+          Log In
+        </button>
+      </form>
+    </>
   );
 };

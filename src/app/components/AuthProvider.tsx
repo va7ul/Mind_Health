@@ -16,6 +16,7 @@ import {
   User,
 } from 'firebase/auth';
 import { auth } from '../../lib/utils/firebase';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 type AuthContextType = {
   user: User | null;
@@ -42,15 +43,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, currentUser => {
-      setUser(currentUser);
-      setLoading(false);
-    });
+    try {
+      const unsubscribe = onAuthStateChanged(auth, currentUser => {
+        setUser(currentUser);
+        setLoading(false);
+      });
 
-    return () => unsubscribe();
+      return () => unsubscribe();
+    } catch (error) {
+      Notify.failure(`${error}`);
+      console.error(error);
+    }
   }, []);
 
   const signUp = async (name: string, email: string, password: string) => {
+    setLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -65,11 +72,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser({ ...user, displayName: name });
       }
     } catch (error) {
+      Notify.failure(`${error}`);
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const signIn = async (email: string, password: string) => {
+    setLoading(true);
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -78,13 +89,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       );
       setUser(userCredential.user);
     } catch (error) {
+      if (error.code === 'auth/invalid-credential') {
+        return Notify.failure('Invalid credentials');
+      }
+
+      Notify.failure(`${error}`);
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const logOut = async () => {
-    await signOut(auth);
-    setUser(null);
+    setLoading(true);
+    try {
+      await signOut(auth);
+      setUser(null);
+    } catch (error) {
+      Notify.failure(`${error}`);
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
